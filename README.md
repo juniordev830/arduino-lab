@@ -1,30 +1,28 @@
 # Arduino Lab
 
-Repositório para organizar experimentos de eletrônica, programação embarcada e automação com Arduino usando C/C++.
+Laboratório de experimentos de eletrônica, programação embarcada e automação com Arduino usando C/C++.
 
-## Estado atual
+## Experimento disponível
 
-Este repositório está sendo preparado como um laboratório de projetos. Cada experimento futuro deve ter sua própria pasta, código-fonte, lista de componentes e instruções de montagem. Não há, no momento, um sketch específico documentado neste README.
+### [Blink — LED integrado](experiments/blink/README.md)
 
-## Estrutura sugerida para cada experimento
+O primeiro experimento usa apenas o LED integrado da placa (LED_BUILTIN), sem componentes ou ligações externas. Consulte as instruções antes de compilar e carregar o sketch.
+
+## Boas práticas de segurança
+
+- Selecione o modelo exato da placa e verifique seus limites elétricos antes de ligar qualquer circuito.
+- Não conecte componentes diretamente a uma alimentação sem conferir tensão, corrente e polaridade.
+- Nunca conecte a rede elétrica residencial a uma placa Arduino.
+- Documente placa, tensão, componentes, pinos e esquema em cada novo experimento.
+- Teste o sketch em bancada e mantenha fios e circuitos desligados durante alterações de montagem.
+
+## Estrutura
 
 ```text
-experimento/
-├── README.md          # objetivo, componentes e montagem
-├── src/
-│   └── experimento.ino
-└── docs/
-    └── esquema.png
+experiments/
+└── blink/
+    ├── blink.ino
+    └── README.md
 ```
 
-## Boas práticas
-
-- Registre a placa utilizada e a tensão de alimentação.
-- Inclua uma lista de componentes e o mapeamento dos pinos.
-- Nunca conecte componentes além dos limites elétricos da placa.
-- Separe o código por experimento para evitar misturar circuitos incompatíveis.
-- Documente como compilar e carregar o sketch pela Arduino IDE ou Arduino CLI.
-
-## Próximos passos
-
-Adicionar o primeiro experimento com código, esquema de ligação e instruções reproduzíveis.
+Experimentos futuros devem ser adicionados em pastas independentes para manter instruções e circuitos isolados.
