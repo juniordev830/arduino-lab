@@ -1,0 +1,23 @@
+name: Portfolio checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sketch-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Arduino sketch files
+        run: |
+          sketches="$(find . -type f -name '*.ino' -not -path './.git/*' -print)"
+          if [ -z "$sketches" ]; then
+            echo "::error::Nenhum sketch .ino encontrado."
+            exit 1
+          fi
+          printf '%s\n' "$sketches"
+          echo "Validação estrutural concluída. A compilação completa depende da placa e das bibliotecas do projeto."
