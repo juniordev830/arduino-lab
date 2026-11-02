@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "project_kind": "Experimentos Arduino / C++",
+  "entry_points": [
+    "experiments/blink/blink.ino",
+    "experiments/blink/README.md"
+  ],
+  "test_commands": [
+    "arduino-cli compile --fqbn arduino:avr:uno experiments/blink"
+  ],
+  "review_focus": [
+    "Compatibilidade com a placa selecionada",
+    "Cuidados elétricos e pinos do microcontrolador"
+  ]
+}
