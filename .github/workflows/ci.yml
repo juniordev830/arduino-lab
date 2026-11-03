@@ -24,3 +24,5 @@ jobs:
           arduino-cli core install arduino:avr
       - name: Compile Blink for Arduino Uno
         run: arduino-cli compile --fqbn arduino:avr:uno experiments/blink
+      - name: Compile Button Debounce for Arduino Uno
+        run: arduino-cli compile --fqbn arduino:avr:uno experiments/button-debounce
