@@ -8,6 +8,10 @@ Laboratório de experimentos de eletrônica, programação embarcada e automaç�
 
 O primeiro experimento usa apenas o LED integrado da placa (LED_BUILTIN), sem componentes ou ligações externas. Consulte as instruções antes de compilar e carregar o sketch.
 
+### [Button debounce — botão com pull-up](experiments/button-debounce/README.md)
+
+O segundo experimento lê um botão em D2 com INPUT_PULLUP e aplica debounce de 35 ms antes de alterar o LED integrado.
+
 ## Boas práticas de segurança
 
 - Selecione o modelo exato da placa e verifique seus limites elétricos antes de ligar qualquer circuito.
