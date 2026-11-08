@@ -20,6 +20,12 @@ jobs:
         run: |
           gcc -std=c11 -Wall -Wextra -Werror -pedantic tests/debounce_test.c experiments/button-debounce/debounce.c -o /tmp/debounce_test
           /tmp/debounce_test
+          gcc -std=c11 -Wall -Wextra -Werror -pedantic tools/debounce_sim.c experiments/button-debounce/debounce.c -o /tmp/debounce_sim
+          /tmp/debounce_sim < tests/debounce_samples.txt | diff -u tests/debounce_expected.txt -
+          if printf '0 9\n' | /tmp/debounce_sim > /tmp/bad-sample.txt 2>/tmp/bad-sample.err; then
+            echo 'Expected invalid sample to be rejected'
+            exit 1
+          fi
       - name: Set up Arduino CLI
         uses: arduino/setup-arduino-cli@v2
       - name: Install AVR core
