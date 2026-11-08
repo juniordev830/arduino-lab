@@ -47,8 +47,9 @@ Você também pode simular o circuito sem uma placa física. Cada linha represen
 ```bash
 gcc -std=c11 -Wall -Wextra -Werror -pedantic tools/debounce_sim.c experiments/button-debounce/debounce.c -o debounce_sim
 ./debounce_sim < tests/debounce_samples.txt
+./debounce_sim --threshold-ms 50 < tests/debounce_slow_samples.txt
 ```
 
-Saída esperada: `50 PRESSED` e `90 RELEASED`. O simulador verifica os dados de entrada e os testes automáticos comparam a saída aos eventos esperados.
+Com o padrão de **35 ms**, a saída esperada é `50 PRESSED` e `90 RELEASED`. Com **50 ms**, o segundo conjunto produz `65 PRESSED` e `120 RELEASED`. O simulador verifica os dados de entrada, rejeita tempos fora de ordem e permite ajustar o intervalo de debounce de **1 a 10.000 ms**. Os testes automáticos comparam a saída aos eventos esperados.
 
 Experimentos futuros devem ser adicionados em pastas independentes para manter instruções e circuitos isolados.
