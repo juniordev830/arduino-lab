@@ -1,6 +1,6 @@
 # Arduino Lab
 
-Laboratório de experimentos de eletrônica, programação embarcada e automação com Arduino usando C/C++.
+Laboratório de experimentos de eletrônica, programação embarcada e automação com Arduino usando **C e C++**.
 
 ## Experimento disponível
 
@@ -10,7 +10,7 @@ O primeiro experimento usa apenas o LED integrado da placa (LED_BUILTIN), sem co
 
 ### [Button debounce — botão com pull-up](experiments/button-debounce/README.md)
 
-O segundo experimento lê um botão em D2 com INPUT_PULLUP e aplica debounce de 35 ms antes de alterar o LED integrado.
+O segundo experimento lê um botão em D2 com INPUT_PULLUP. A lógica de debounce de 35 ms usa um módulo em **C11**, integrado ao sketch Arduino e testável em computador sem placa.
 
 ## Boas práticas de segurança
 
@@ -28,5 +28,16 @@ experiments/
     ├── blink.ino
     └── README.md
 ```
+
+## Testes nativos em C
+
+Sem placa conectada, rode:
+
+```bash
+gcc -std=c11 -Wall -Wextra -Werror -pedantic tests/debounce_test.c experiments/button-debounce/debounce.c -o debounce_test
+./debounce_test
+```
+
+O teste verifica ruídos do botão, acionamento, soltura e o retorno de `millis()` ao zero. O GitHub Actions compila o módulo em C e o sketch para Arduino Uno.
 
 Experimentos futuros devem ser adicionados em pastas independentes para manter instruções e circuitos isolados.
