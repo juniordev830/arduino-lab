@@ -40,4 +40,15 @@ gcc -std=c11 -Wall -Wextra -Werror -pedantic tests/debounce_test.c experiments/b
 
 O teste verifica ruídos do botão, acionamento, soltura e o retorno de `millis()` ao zero. O GitHub Actions compila o módulo em C e o sketch para Arduino Uno.
 
+### Simulador de botão em C
+
+Você também pode simular o circuito sem uma placa física. Cada linha representa `milissegundos nivel`, onde `0` indica botão pressionado e `1` indica botão solto (`INPUT_PULLUP`):
+
+```bash
+gcc -std=c11 -Wall -Wextra -Werror -pedantic tools/debounce_sim.c experiments/button-debounce/debounce.c -o debounce_sim
+./debounce_sim < tests/debounce_samples.txt
+```
+
+Saída esperada: `50 PRESSED` e `90 RELEASED`. O simulador verifica os dados de entrada e os testes automáticos comparam a saída aos eventos esperados.
+
 Experimentos futuros devem ser adicionados em pastas independentes para manter instruções e circuitos isolados.
