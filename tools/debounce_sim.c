@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
         char timestamp_text[64], level_text[16], extra;
         uint32_t timestamp_ms, raw_level;
         ++line_number;
-        if (strchr(line, '\n') == NULL && !feof(stdin)) {
+        if (strchr(line, '\n') == NULL && strlen(line) == sizeof line - 1u) {
             fprintf(stderr, "Line %u is too long\n", line_number);
             return 2;
         }
