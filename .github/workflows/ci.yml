@@ -22,8 +22,18 @@ jobs:
           /tmp/debounce_test
           gcc -std=c11 -Wall -Wextra -Werror -pedantic tools/debounce_sim.c experiments/button-debounce/debounce.c -o /tmp/debounce_sim
           /tmp/debounce_sim < tests/debounce_samples.txt | diff -u tests/debounce_expected.txt -
-          if printf '0 9\n' | /tmp/debounce_sim > /tmp/bad-sample.txt 2>/tmp/bad-sample.err; then
-            echo 'Expected invalid sample to be rejected'
+          /tmp/debounce_sim --threshold-ms 50 < tests/debounce_slow_samples.txt | diff -u tests/debounce_slow_expected.txt -
+          for invalid in "0 9" "-1 0" "100 0"; do
+            if printf '%s\\n' "$invalid" | /tmp/debounce_sim >/dev/null 2>/dev/null; then
+              if [ "$invalid" != "100 0" ]; then echo "Expected invalid sample to fail"; exit 1; fi
+            fi
+          done
+          if printf '100 1\\n90 0\\n' | /tmp/debounce_sim >/dev/null 2>/dev/null; then
+            echo "Expected out-of-order timestamps to fail"
+            exit 1
+          fi
+          if /tmp/debounce_sim --threshold-ms 0 </dev/null >/dev/null 2>/dev/null; then
+            echo "Expected invalid threshold to fail"
             exit 1
           fi
       - name: Set up Arduino CLI
