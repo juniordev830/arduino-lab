@@ -30,3 +30,7 @@ experiments/
 ```
 
 Experimentos futuros devem ser adicionados em pastas independentes para manter instruções e circuitos isolados.
+
+## Verificação antes de contribuir
+
+O [guia de validação](docs/GUIA_DE_VALIDACAO.md) descreve o estado do código, as verificações reproduzíveis e os riscos a observar ao revisar novas alterações.
