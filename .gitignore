@@ -66,3 +66,7 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Local C debounce simulation binaries
+debounce_sim
+debounce_test

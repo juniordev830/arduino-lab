@@ -16,6 +16,31 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check repository structure
         run: test -f README.md
+      - name: Compile and test portable C debounce module
+        run: |
+          gcc -std=c11 -Wall -Wextra -Werror -pedantic tests/debounce_test.c experiments/button-debounce/debounce.c -o /tmp/debounce_test
+          /tmp/debounce_test
+          gcc -std=c11 -Wall -Wextra -Werror -pedantic tools/debounce_sim.c experiments/button-debounce/debounce.c -o /tmp/debounce_sim
+          /tmp/debounce_sim < tests/debounce_samples.txt | diff -u tests/debounce_expected.txt -
+          /tmp/debounce_sim --threshold-ms 50 < tests/debounce_slow_samples.txt | diff -u tests/debounce_slow_expected.txt -
+          for invalid in "0 9" "-1 0" "12 hello"; do
+            if printf '%s\n' "$invalid" | /tmp/debounce_sim >/dev/null 2>/dev/null; then
+              echo "Expected invalid sample to fail"
+              exit 1
+            fi
+          done
+          if printf '100 1\n90 0\n' | /tmp/debounce_sim >/dev/null 2>/dev/null; then
+            echo "Expected out-of-order timestamps to fail"
+            exit 1
+          fi
+          if /tmp/debounce_sim --threshold-ms 0 </dev/null >/dev/null 2>/dev/null; then
+            echo "Expected invalid threshold to fail"
+            exit 1
+          fi
+      - name: Check non-blocking LED timer across millis wrap
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -pedantic tests/serial_blink_test.cpp -o /tmp/serial_blink_test
+          /tmp/serial_blink_test
       - name: Set up Arduino CLI
         uses: arduino/setup-arduino-cli@v2
       - name: Install AVR core
@@ -26,3 +51,5 @@ jobs:
         run: arduino-cli compile --fqbn arduino:avr:uno experiments/blink
       - name: Compile Button Debounce for Arduino Uno
         run: arduino-cli compile --fqbn arduino:avr:uno experiments/button-debounce
+      - name: Compile Serial Blink for Arduino Uno
+        run: arduino-cli compile --fqbn arduino:avr:uno experiments/serial-blink
