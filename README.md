@@ -12,6 +12,11 @@ O primeiro experimento usa apenas o LED integrado da placa (LED_BUILTIN), sem co
 
 O segundo experimento lê um botão em D2 com INPUT_PULLUP. A lógica de debounce de 35 ms usa um módulo em **C11**, integrado ao sketch Arduino e testável em computador sem placa.
 
+
+### [Serial Blink — LED sem bloqueio](experiments/serial-blink/README.md)
+
+Terceiro experimento: temporização do LED integrado com `millis()`, comandos simples no monitor serial e teste portável de estouro do contador. O CI compila para Arduino Uno e executa o teste C++ nativo.
+
 ## Boas práticas de segurança
 
 - Selecione o modelo exato da placa e verifique seus limites elétricos antes de ligar qualquer circuito.
