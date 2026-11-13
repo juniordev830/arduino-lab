@@ -37,6 +37,10 @@ jobs:
             echo "Expected invalid threshold to fail"
             exit 1
           fi
+      - name: Check non-blocking LED timer across millis wrap
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -pedantic tests/serial_blink_test.cpp -o /tmp/serial_blink_test
+          /tmp/serial_blink_test
       - name: Set up Arduino CLI
         uses: arduino/setup-arduino-cli@v2
       - name: Install AVR core
@@ -47,3 +51,5 @@ jobs:
         run: arduino-cli compile --fqbn arduino:avr:uno experiments/blink
       - name: Compile Button Debounce for Arduino Uno
         run: arduino-cli compile --fqbn arduino:avr:uno experiments/button-debounce
+      - name: Compile Serial Blink for Arduino Uno
+        run: arduino-cli compile --fqbn arduino:avr:uno experiments/serial-blink
