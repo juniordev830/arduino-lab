@@ -13,7 +13,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Check repository structure
         run: test -f README.md
       - name: Compile and test portable C debounce module
@@ -42,7 +42,7 @@ jobs:
           g++ -std=c++17 -Wall -Wextra -Werror -pedantic tests/serial_blink_test.cpp -o /tmp/serial_blink_test
           /tmp/serial_blink_test
       - name: Set up Arduino CLI
-        uses: arduino/setup-arduino-cli@v2
+        uses: arduino/setup-arduino-cli@b3cda96fddef6af6c56b4c5efb5c47e2357935db # v2
       - name: Install AVR core
         run: |
           arduino-cli core update-index
