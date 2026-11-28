@@ -1,5 +1,7 @@
 # Arduino Lab
 
+**Navegação** · [Experimento disponível](#experimento-disponível) · [Boas práticas de segurança](#boas-práticas-de-segurança) · [Estrutura](#estrutura) · [Código e estudo](docs/ENGENHARIA_REVERSA.md)
+
 Laboratório de experimentos de eletrônica, programação embarcada e automação com Arduino usando **C e C++**.
 
 ## Experimento disponível
@@ -62,3 +64,9 @@ Experimentos futuros devem ser adicionados em pastas independentes para manter i
 ## Verificação antes de contribuir
 
 O [guia de validação](docs/GUIA_DE_VALIDACAO.md) descreve o estado do código, as verificações reproduzíveis e os riscos a observar ao revisar novas alterações.
+
+## Código e roteiro de estudo
+
+Por que uma transição de botão precisa de estabilidade e como testá-la sem hardware? O [guia de engenharia reversa](docs/ENGENHARIA_REVERSA.md) reúne o mapa dos módulos e uma pergunta técnica baseada no projeto.
+
+Mantido por [João Junior](https://github.com/juniordev830).
